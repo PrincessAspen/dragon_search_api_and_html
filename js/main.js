@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const newFigure = document.createElement("figure");
         const dragonImage = document.createElement("img");
 
-        dragonImage.src = dragon.imageURL || "css/Media/placeholder.jpg";
+        dragonImage.src = dragon.image || "css/Media/placeholder.jpg";
         newH1.innerHTML = `${dragon.name}`;
         newH2.innerHTML = `Color: ${dragon.color} <br> Size: ${dragon.size} <br> Breath Weapon: ${dragon.breath_weapon}`;
         newParagraph.innerHTML = `${dragon.summary}`;

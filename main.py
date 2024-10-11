@@ -28,8 +28,8 @@ def root():
 app.mount("/images", StaticFiles(directory="css/Media/images"))
 
 @app.post("/create/dragon")
-def create_dragon(name: str, color: str,  size: str, breath_weapon: str, source: str, summary: str, session: Session = Depends(get_session)):
-    dragon = Dragon(name=name, color=color, size=size, breath_weapon=breath_weapon, source=source)
+def create_dragon(name: str, color: str,  size: str, breath_weapon: str, source: str, summary: str, image: str = None, session: Session = Depends(get_session)):
+    dragon = Dragon(name=name, color=color, size=size, breath_weapon=breath_weapon, source=source, summary=summary, image=image)
     session.add(dragon)
     session.commit()
     session.refresh(dragon)
