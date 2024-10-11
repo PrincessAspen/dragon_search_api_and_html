@@ -2,13 +2,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Function to fetch a dragon by name
     function fetchByName(dragonName) {
-        const url = `http://localhost:8000/dragons?name=${dragonName}`;  // Fetch by name
+        const url = `http://localhost:8000/dragons?name=${encodeURIComponent(dragonName)}`;  // Fetch by name
         const theInfoSpot = document.getElementById("infoSpot");
         theInfoSpot.innerHTML = '';  // Clear previous content
 
         fetch(url, { method: "GET" })
             .then(response => response.json())
             .then(giveResult => {
+                console.log(giveResult);
                 if (giveResult) {
                     displayDragon(giveResult);  // Display the found dragon
                 } else {
@@ -51,22 +52,30 @@ document.addEventListener("DOMContentLoaded", function() {
         const newH1 = document.createElement("h1");
         const newH2 = document.createElement("h2");
         const newFigure = document.createElement("figure");
-        //const poster = document.createElement("img");
+        const dragonImage = document.createElement("img");
 
-        //poster.src = dragon.ImageURL || '';
+        dragonImage.src = dragon.imageURL || "css/Media/placeholder.jpg";
         newH1.innerHTML = `${dragon.name}`;
         newH2.innerHTML = `Color: ${dragon.color} <br> Size: ${dragon.size} <br> Breath Weapon: ${dragon.breath_weapon}`;
         newParagraph.innerHTML = `${dragon.summary}`;
 
         // Append the dragon details to the page
-        //newFigure.appendChild(poster);
+        newFigure.appendChild(dragonImage);
         newFigure.appendChild(newH1);
         theInfoSpot.appendChild(newFigure);
         theInfoSpot.appendChild(newH2);
         theInfoSpot.appendChild(newParagraph);
+
+        if (newParagraph.textContent) {
+            theInfoSpot.classList.add("theInfo");
+            console.log("added")
+        } else {
+            theInfoSpot.classList.remove("theInfo");
+            console.log("removed")
+        }
     }
 
-    // Function to display a message (like "Dragon not found")
+    // Function to display a message
     function displayMessage(message) {
         const theInfoSpot = document.getElementById("infoSpot");
         const newParagraph = document.createElement("p");

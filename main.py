@@ -33,11 +33,17 @@ def create_dragon(name: str, color: str,  size: str, breath_weapon: str, source:
     return {"dragon": dragon}
 
 @app.get("/dragons")
-def list_dragons(session: Session = Depends(get_session)):
-    statement = select(Dragon)
-    print(f"SQL STATEMENT: {statement}")
-    results = session.exec(statement)
-    return results.all()
+def list_dragons(name: str = None, session: Session = Depends(get_session)):
+    if name:
+        statement = select(Dragon).where(Dragon.name == name)
+        print(f"SQL STATEMENTL {statement}")
+        results = session.exec(statement)
+        return results.first()
+    else:
+        statement = select(Dragon)
+        print(f"SQL STATEMENT: {statement}")
+        results = session.exec(statement)
+        return results.all()
 
 @app.put("/update/dragon/{id}")
 def update_dragon(id: int, name: str, color: str, size: str, breath_weapon: str, source: str, summary: str, session: Session = Depends(get_session)):
