@@ -9,3 +9,4 @@ class Dragon(Base, table=True):
     breath_weapon: str
     source: str
     summary: str
+    image: str
