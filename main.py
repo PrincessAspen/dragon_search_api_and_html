@@ -1,6 +1,7 @@
 import uvicorn
 from fastapi import FastAPI, Depends
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from sqlmodel import Session, select
 from db import get_session
 from models.dragons import Dragon
@@ -23,6 +24,8 @@ app.add_middleware(
 @app.get("/")
 def root():
     return {"message" : "Hello World"}
+
+app.mount("/images", StaticFiles(directory="css/Media/images"))
 
 @app.post("/create/dragon")
 def create_dragon(name: str, color: str,  size: str, breath_weapon: str, source: str, summary: str, session: Session = Depends(get_session)):
