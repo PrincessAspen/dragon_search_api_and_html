@@ -11,6 +11,17 @@ body {
     align-items: center;
 }
 
+.pleaseText {
+    flex-direction: row-reverse;
+    margin: 2px;
+    padding: 3px;
+    color: black;
+    background: linear-gradient(45deg, red, orange, yellow, green, rgb(64, 64, 255), rgb(179, 73, 255), violet, red);
+    align-items: center;
+    max-width: 75%;
+    font-weight: bold;
+}
+
 .root {
     display: block;
     background-color: black;
@@ -42,7 +53,7 @@ body {
 
 #infoSpot figure {
     /* width: 100%; */
-    max-width: 100%;
+    max-width: 75%;
     max-height: 100%;
     align-items: center;
     justify-content: center;
@@ -52,7 +63,7 @@ body {
 #infoSpot img {
     background-size: contain;
     width: 100%;
-    height: 100%;
+    height: 500px;
 }
 
 /* #infoSpot figure {

@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     const randomDragon = giveResult[randomIndex];
                     displayDragon(randomDragon);  // Display the random dragon
                 } else {
-                    displayMessage("No dragons available.");
+                    displayMessage("No dragon by that name, make sure you're spelling and capitalizing it correctly");
                 }
             })
             .catch(error => {
@@ -81,6 +81,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const newParagraph = document.createElement("p");
         newParagraph.textContent = message;
         theInfoSpot.appendChild(newParagraph);
+        theInfoSpot.classList.add("theInfo");
     }
 
     // Event listener for form submission
